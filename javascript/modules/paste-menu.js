@@ -1,5 +1,5 @@
 const PasteMenu = {
-
+ 
     EDIT_CONTENT_ELEMENT_ID: "editPasteContentButton",
     LOCAL_STORAGE_ID: "PASTE_BUTTON_CONFIG",
     DEFAULT_STORAGE_VALUE: {},

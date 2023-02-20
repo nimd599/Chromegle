@@ -26,7 +26,7 @@ class ThemeManager {
                 this.OverrideManager.initialize();
             }
 
-            this.#stylesheet.href = chrome.runtime.getURL(this.#currentResourcePath)
+            this.#stylesheet.href = browser.runtime.getURL(this.#currentResourcePath)
             this.#stylesheet.id = "customStylesheet";
         } catch (ex) {
             Logger.ERROR("The theme manager has failed, stack-trace below:");
@@ -84,7 +84,7 @@ class ThemeManager {
         #overrideHeader = () => {
             let headerQuery = {}
             headerQuery[config.headerButtonsToggle.getName()] = config.headerButtonsToggle.getDefault();
-            chrome.storage.sync.get(headerQuery, (result) => {
+            browser.storage.sync.get(headerQuery, (result) => {
                 let showHeaderButtons = result[config.headerButtonsToggle.getName()] === "true";
                 if (showHeaderButtons) return;
 
