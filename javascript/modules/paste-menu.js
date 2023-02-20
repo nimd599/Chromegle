@@ -65,20 +65,42 @@ const PasteMenu = {
 
 
     getStoredChromeConfig(callback) {
-        let pasteMenuQuery = {}
+        let pasteMenuQuery = {};
         pasteMenuQuery[PasteMenu.LOCAL_STORAGE_ID] = PasteMenu.DEFAULT_STORAGE_VALUE;
-        chrome.storage.local.get(pasteMenuQuery, callback);
-    },
+        browser.storage.local.get(pasteMenuQuery)
+          .then(result => {
+            // Retrieve the stored data from the result object
+            let data = result[PasteMenu.LOCAL_STORAGE_ID];
+            // Call the callback function with the retrieved data
+            callback(data);
+          });
+      }
+      
 
 
-    setStoredChromeConfig(newConfig) {
-        if (newConfig == null) return;
+   // Define your `data` object here
+let data = { someKey: "someValue" };
 
-        let pasteMenuQuery = {}
-        pasteMenuQuery[PasteMenu.LOCAL_STORAGE_ID] = (newConfig || PasteMenu.DEFAULT_STORAGE_VALUE);
+// Store the `data` object under the key "config"
+browser.storage.local.set({ "config": data });
 
-        browser.storage.local.set(pasteMenuQuery);
-        PasteMenu.setPasteMenuConfig(newConfig);
+// Retrieve the `newConfig` object from somewhere
+let newConfig = { someOtherKey: "someOtherValue" };
+
+// If `newConfig` is `null` or `undefined`, return early
+if (!newConfig) {
+  return;
+}
+
+// Update the `pasteMenuQuery` object to include the `newConfig` value
+let pasteMenuQuery = {};
+pasteMenuQuery[PasteMenu.LOCAL_STORAGE_ID] = newConfig || PasteMenu.DEFAULT_STORAGE_VALUE;
+
+// Store the updated `pasteMenuQuery` object
+browser.storage.local.set(pasteMenuQuery);
+
+// Call the `setPasteMenuConfig` function with the `newConfig` value
+PasteMenu.setPasteMenuConfig(newConfig);
 
     },
 
@@ -184,7 +206,7 @@ const PasteMenu = {
     }
 
 
-}
+
 
 
 
