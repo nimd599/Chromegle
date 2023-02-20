@@ -15,7 +15,7 @@ const GreetingManager = {
             greetingQuery[config.typingSpeedField.getName()] = config.typingSpeedField.getDefault();
             greetingQuery[config.sendDelayField.getName()] = config.sendDelayField.getDefault();
 
-            chrome.storage.sync.get(greetingQuery, (result) => {
+            browser.storage.sync.get(greetingQuery, (result) => {
 
                 if (result[config.toggleGreeting.getName()] === "true") {
                     const textOptions = result[config.greetingMessageField.getName()]

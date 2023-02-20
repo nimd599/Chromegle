@@ -50,7 +50,7 @@ const FilterManager = {
     },
 
     loadFilterFromFile(path, key) {
-        return fetch(chrome.runtime.getURL(path))
+        return fetch(browser.runtime.getURL(path))
             .then(response => response.text()).then(response => response.replaceAll("\r", ""))
             .then(response => response.split("\n"))
             .then(data => {
@@ -64,7 +64,7 @@ const FilterManager = {
         filterQuery[config.profanityFilterToggle.getName()] = config.profanityFilterToggle.getDefault();
         filterQuery[config.sexualFilterToggle.getName()] = config.sexualFilterToggle.getDefault();
 
-        chrome.storage.sync.get(filterQuery, (result) => {
+        browser.storage.sync.get(filterQuery, (result) => {
 
             // Get filter config
             const sexualFilter = result[config.sexualFilterToggle.getName()] === "true";

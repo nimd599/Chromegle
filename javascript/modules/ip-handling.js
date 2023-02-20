@@ -10,7 +10,7 @@ const IPGrabberManager = {
         this.loadLanguageList();
 
         let script = document.createElement('script');
-        script.src = chrome.runtime.getURL('/javascript/modules/web-accessible-scripts/scrape-ips.js')
+        script.src = browser.runtime.getURL('/javascript/modules/web-accessible-scripts/scrape-ips.js')
         script.onload = () => {
             script.remove();
             document.dispatchEvent(new CustomEvent('scrapeAddress'))
@@ -39,7 +39,7 @@ const IPGrabberManager = {
         let scrapeQuery = {}
         scrapeQuery[config.ipGrabToggle.getName()] = config.ipGrabToggle.getDefault();
 
-        chrome.storage.sync.get(scrapeQuery, (result) => {
+        browser.storage.sync.get(scrapeQuery, (result) => {
             sha1(detail["detail"]).then((hashedAddress) => {
 
                 // Skip if blocked
@@ -50,7 +50,7 @@ const IPGrabberManager = {
                     let previousQuery = {}
                     previousQuery["PREVIOUS_HASHED_ADDRESS_LIST"] = {};
 
-                    chrome.storage.local.get(previousQuery, (_result) => {
+                    browser.storage.local.get(previousQuery, (_result) => {
                         const previousHashedAddresses = _result["PREVIOUS_HASHED_ADDRESS_LIST"];
                         const seenTimes = (previousHashedAddresses[hashedAddress] == null) ? 0 : previousHashedAddresses[hashedAddress];
                         document.dispatchEvent(new CustomEvent(
@@ -106,7 +106,7 @@ const IPGrabberManager = {
 
 
         previousHashedAddresses[hashedAddress] = seenTimes + 1;
-        chrome.storage.local.set({"PREVIOUS_HASHED_ADDRESS_LIST": previousHashedAddresses});
+        browser.storage.local.set({"PREVIOUS_HASHED_ADDRESS_LIST": previousHashedAddresses});
 
         IPGrabberManager.ipGrabberDiv.style.display = showData ? "" : "none";
         if (showData) ButtonManager.ipToggleButton.html(IPGrabberManager.disableTag);

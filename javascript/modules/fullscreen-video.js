@@ -51,7 +51,7 @@ const FullScreenVideoManager = {
         let hiddenQuery = {}
         hiddenQuery[config.videoToolsButtonToggle.getName()] = config.videoToolsButtonToggle.getDefault();
 
-        chrome.storage.sync.get(hiddenQuery, (result) => {
+        browser.storage.sync.get(hiddenQuery, (result) => {
             FullScreenVideoManager.instances.forEach((instance) => {
                 instance.videoButtonHidden(!(result[config.videoToolsButtonToggle.getName()] === "true"));
             });

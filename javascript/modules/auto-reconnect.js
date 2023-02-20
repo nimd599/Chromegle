@@ -13,7 +13,7 @@ const ReconnectManager = {
             reconnectQuery[config.autoReconnectToggle.getName()] = config.autoReconnectToggle.getDefault();
             reconnectQuery[config.autoReconnectType.getName()] = config.autoReconnectType.getDefault();
 
-            chrome.storage.sync.get(reconnectQuery, (result) => {
+            browser.storage.sync.get(reconnectQuery, (result) => {
 
                 // Must be enabled
                 if (!(result[config.autoReconnectToggle.getName()] === "true")) {

@@ -76,7 +76,7 @@ const AutoSkipManager = {
             let seenBeforeQuery = {};
             seenBeforeQuery[config.skipRepeatsToggle.getName()] = config.skipRepeatsToggle.getDefault();
 
-            chrome.storage.sync.get(seenBeforeQuery, (result) => {
+            browser.storage.sync.get(seenBeforeQuery, (result) => {
 
                 if (result[config.skipRepeatsToggle.getName()] === "true") {
 
