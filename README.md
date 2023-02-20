@@ -1,4 +1,4 @@
-Chromegle
+Chromegle (Firefox)
 ==================
 A Javascript Chrome (and Opera) Extension for Omegle, certified for Chrome 88 and above. 
 
