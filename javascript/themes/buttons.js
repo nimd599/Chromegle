@@ -16,7 +16,7 @@ const ButtonManager = {
 
             let showQuery = {}
             showQuery[config.ipGrabToggle.getName()] = config.ipGrabToggle.getDefault();
-            chrome.storage.sync.get(showQuery, (result) => {
+            browser.storage.sync.get(showQuery, (result) => {
 
                 const enabled = !(result[config.ipGrabToggle.getName()] === "true");
                 IPGrabberManager.ipGrabberDiv.style.display = enabled ? "" : "none";
