@@ -344,7 +344,7 @@ const ConfigManager = {
                 storageQuery[key] = config[key].getDefault();
             }
 
-            chrome.storage.sync.get(storageQuery, (result) => {
+            browser.storage.sync.get(storageQuery, (result) => {
                 MutableField.localValues = result;
                 document.dispatchEvent(new CustomEvent("localStorageLoaded"));
             });
@@ -368,7 +368,7 @@ const ConfigManager = {
                 storageQuery[config[key].getName()] = config[key].getDefault();
             }
 
-            chrome.storage.sync.get(storageQuery, (result) => MutableField.localValues = result);
+            browser.storage.sync.get(storageQuery, (result) => MutableField.localValues = result);
 
         }
 

@@ -12,7 +12,7 @@ $(document).on("ready", () => {
         // noinspection HttpUrlsUsage
         if (window.location.href.includes("banredir.html") || window.location.href === "http://omegle.com/static/ban.html" || window.location.href.includes("ban.html")) {
             $("html")
-                .load(chrome.runtime.getURL("/resources/html/banned.html"))
+                .load(browser.runtime.getURL("/resources/html/banned.html"))
                 .css("background-color", "#17191a");
         }
 
@@ -76,7 +76,7 @@ $(document).on("ready", () => {
         let themeQuery = {}
         themeQuery[config.semiLightModeOption.getName()] = config.semiLightModeOption.getDefault();
 
-        chrome.storage.sync.get(themeQuery, (result) => {
+        browser.storage.sync.get(themeQuery, (result) => {
             themeManager = new ThemeManager(config[result[config.semiLightModeOption.getName()]].getValue());
             themeManager.loadCurrentTheme();
             document.getElementsByTagName("html")[0].style.visibility = "visible";

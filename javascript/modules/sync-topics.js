@@ -5,7 +5,7 @@ const TopicSyncManager = {
         /**
          * Sync cookies with stored topic on page load
          */
-        chrome.storage.sync.get(["STORED_TOPIC_LIST"],
+        browser.storage.sync.get(["STORED_TOPIC_LIST"],
             (val) => {
                 let cachedTopicString = JSON.stringify(val["STORED_TOPIC_LIST"]);
                 let cookieTopicString = Cookies.get("topiclist", {domain: ".omegle.com"});
@@ -31,7 +31,7 @@ const TopicSyncManager = {
     _beforeUnload(event) {
         const cookies = Cookies.get("topiclist", {domain: ".omegle.com"}) || null;
         if (cookies != null) {
-            chrome.storage.sync.set(
+            browser.storage.sync.set(
                 {
                     "STORED_TOPIC_LIST": JSON.parse(cookies)
                 }
@@ -45,7 +45,7 @@ const TopicSyncManager = {
      */
     _pageStarted() {
         const cookies = Cookies.get("topiclist", {domain: ".omegle.com"}) || null;
-        chrome.storage.sync.set({"STORED_TOPIC_LIST": JSON.parse(cookies)});
+        browser.storage.sync.set({"STORED_TOPIC_LIST": JSON.parse(cookies)});
         Logger.INFO("Updated sync-storage cached topics on <%s> event: %s", event.type, cookies);
     }
 }

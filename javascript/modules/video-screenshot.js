@@ -151,7 +151,7 @@ const VideoScreenshotManager = {
         let hiddenQuery = {}
         hiddenQuery[config.videoToolsButtonToggle.getName()] = config.videoToolsButtonToggle.getDefault();
 
-        chrome.storage.sync.get(hiddenQuery, (result) => {
+        browser.storage.sync.get(hiddenQuery, (result) => {
             VideoScreenshotManager.instances.forEach((instance) => {
                 instance.videoButtonHidden(!(result[config.videoToolsButtonToggle.getName()] === "true"));
             });

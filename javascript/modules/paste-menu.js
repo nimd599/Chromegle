@@ -24,7 +24,7 @@ const PasteMenu = {
             let pasteMenuQuery = {}
             pasteMenuQuery[config.pasteMenuToggle.getName()] = config.pasteMenuToggle.getDefault();
 
-            chrome.storage.sync.get(pasteMenuQuery, (_result) => {
+            browser.storage.sync.get(pasteMenuQuery, (_result) => {
                 PasteMenu._initialize(result[PasteMenu.getLocalStorageId()], _result[config.pasteMenuToggle.getName()] === "true");
             })
         }, true);
@@ -77,7 +77,7 @@ const PasteMenu = {
         let pasteMenuQuery = {}
         pasteMenuQuery[PasteMenu.LOCAL_STORAGE_ID] = (newConfig || PasteMenu.DEFAULT_STORAGE_VALUE);
 
-        chrome.storage.local.set(pasteMenuQuery);
+        browser.storage.local.set(pasteMenuQuery);
         PasteMenu.setPasteMenuConfig(newConfig);
 
     },

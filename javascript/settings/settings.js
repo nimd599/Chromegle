@@ -83,7 +83,7 @@ class MutableField {
         }
 
         override[this.#storageName] = config["value"]
-        chrome.storage.sync.set(override);
+        browser.storage.sync.set(override);
         document.dispatchEvent(new CustomEvent("storageSettingsUpdate", {detail: override}));
         return true;
     }
@@ -134,7 +134,7 @@ class SwitchEdit extends MutableField {
         let currentQuery = {}
         currentQuery[this.getName()] = this.getDefault();
 
-        chrome.storage.sync.get(currentQuery, (result) => {
+        browser.storage.sync.get(currentQuery, (result) => {
             const currentlySelected = result[this.getName()] === this.#elementName;
 
             // No Change Requested
@@ -196,7 +196,7 @@ class ToggleEdit extends MutableField {
         const request = {}
         let newResult;
         request[name] = this.getDefault();
-        chrome.storage.sync.get(request, (result) => {
+        browser.storage.sync.get(request, (result) => {
             if (noChange) {
                 newResult = result[name];
 
@@ -255,7 +255,7 @@ class FieldEdit extends MutableField {
         const name = this.getName();
         const request = {}
         request[name] = this.getDefault();
-        chrome.storage.sync.get(request, (result) => {
+        browser.storage.sync.get(request, (result) => {
             const response = this.getResponse(result[name]);
             this.updateValue(this.#check(response));
         })
