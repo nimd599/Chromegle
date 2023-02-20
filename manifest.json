@@ -70,7 +70,7 @@
       ]
     }
   ],
-  "incognito": "split",
+  "incognito": "spanning",
   "permissions": [
     "storage"
   ],
