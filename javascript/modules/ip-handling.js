@@ -376,16 +376,16 @@ const IPBlockingManager = {
     getStoredChromeConfig(callback) {
         let blockQuery = {}
         blockQuery[IPBlockingManager.LOCAL_STORAGE_ID] = IPBlockingManager.DEFAULT_STORAGE_VALUE;
-        chrome.storage.local.get(blockQuery, callback);
+        browser.storage.local.get(blockQuery, callback);
     },
 
-    setStoredChromeConfig(newConfig) {
+    setStoredbrowserConfig(newConfig) {
         if (newConfig == null) return;
 
         let blockQuery = {}
         blockQuery[IPBlockingManager.LOCAL_STORAGE_ID] = (newConfig || IPBlockingManager.DEFAULT_STORAGE_VALUE);
 
-        chrome.storage.local.set(blockQuery);
+        browser.storage.local.set(blockQuery);
     },
 
     unblockAddress(unhashedAddress, inChat = true) {
