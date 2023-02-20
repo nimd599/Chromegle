@@ -1,5 +1,5 @@
 function getResourceURL(path) {
-    return `chrome-extension://${browser.runtime.id}/` + path
+    return `moz-extension://${browser.runtime.id}/` + path
 }
 
 const isNumeric = (str) => {
